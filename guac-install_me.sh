@@ -3,14 +3,13 @@
 
 # Check if user is root or sudo
 if ! [ $( id -u ) = 0 ]; then
-    echo "Please run this script as sudo or root" 
+    echo "Please run this script as sudo or root" 1>&2
     exit 1
 fi
 
 # Check to see if any old files left over
 if [ "$( find . -maxdepth 1 \( -name 'guacamole-*' -o -name 'mysql-connector-java-*' \) )" != "" ]; then
-    echo "Possible temp files detected. Please review 'guacamole-*' & 'mysql-connector-java-*'" 
-    #1>&2
+    echo "Possible temp files detected. Please review 'guacamole-*' & 'mysql-connector-java-*'" 1>&2
     exit 1
 fi
 
